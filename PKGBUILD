@@ -1,30 +1,30 @@
 # Maintainer: Eric Vidal <eric@obarun.org>
 
-pkgname=udisks-s6serv
+pkgname=udisksd-s6serv
 pkgver=0.1
-pkgrel=2
-pkgdesc="udisks service for s6"
+pkgrel=1
+pkgdesc="udisks2 service for s6"
 arch=(x86_64)
 license=('beerware')
-depends=('udisks' 's6' 's6-rc' 's6-boot')
+depends=('udisks2' 's6' 's6-rc' 's6-boot')
 conflicts=()
-source=('udisks.daemon.run.s6'
-		'udisks.log.run.s6'
-		'udisks.logd'
+source=('udisksd.daemon.run.s6'
+		'udisksd.log.run.s6'
+		'udisksd.logd'
 		'LICENSE')
-md5sums=('9e4bd3b6935dd042c462fe8b9ea2ea89'
-         '7c56f2e1a2b9054f50c165b57a3a33de'
-         '1c1882a26b8f9fd2ddd16ecad7953274'
+md5sums=('42f1b01b5ef9a80c4494f0c0186c0aaa'
+         '241a50247bb7ca1ac3d79203e7a67960'
+         'dee6bca7efbd181ee0507c4d4ee41c1b'
          '191a37ae657aa17e37e75d0242865dba')
 
 package() {
 	
 	# daemon
-	install -Dm 0755 "$srcdir/udisks.daemon.run.s6" "$pkgdir/etc/s6-serv/available/classic/udisks/run"
+	install -Dm 0755 "$srcdir/udisksd.daemon.run.s6" "$pkgdir/etc/s6-serv/available/classic/udisksd/run"
 	
 	# log
-	install -Dm 0755 "$srcdir/udisks.log.run.s6" "$pkgdir/etc/s6-serv/available/classic/udisks/log/run"
-	install -Dm 0644 "$srcdir/udisks.logd" "$pkgdir/etc/s6-serv/log.d/serv/udisks"
+	install -Dm 0755 "$srcdir/udisksd.log.run.s6" "$pkgdir/etc/s6-serv/available/classic/udisksd/log/run"
+	install -Dm 0644 "$srcdir/udisksd.logd" "$pkgdir/etc/s6-serv/log.d/udisksd"
 	
-	install -Dm 0755 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/udisks-s6serv/LICENSE"
+	install -Dm 0755 "$srcdir/LICENSE" "$pkgdir/usr/share/licenses/udisksd-s6serv/LICENSE"
 }
